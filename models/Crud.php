@@ -1,9 +1,9 @@
 <?php
 
 
-include ("class_connect.php");
+include ("ConnectDB.php");
 
-class Classcrud extends Conexao{
+class ClassCrud extends Conexao{
 	//Atributos
 
 	private $Crud;
