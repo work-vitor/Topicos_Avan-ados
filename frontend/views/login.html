@@ -7,11 +7,12 @@
     
         <div class="content">
             <h1>Faça o login para utilizar o sistema</h1>
-            <form action="">
-                <input type="text" id="fname" name="fname" placeholder="Login"><br>
-                <input type="text" id="lname" name="lname" placeholder="Senha"><br>
+            <form action="../../controller/loginUserController.php" method="POST">
+                <input type="text" name="email" placeholder="Login"><br>
+                <input type="password" name="password" placeholder="Senha"><br>
                 <input type="submit" value="submit"><br>
-                <input type="submit" value="cadastrar">
+                <h4>não possui conta? crie uma!!</h4>
+                <a href="../views/register_user.html">Criar conta!</a>
             </form>
         </div>
 

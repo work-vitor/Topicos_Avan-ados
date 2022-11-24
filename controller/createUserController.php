@@ -18,6 +18,7 @@
             )
         );
         echo "<script> alert('Cadastrado com sucesso');</script>";
+        echo "<script> window.location.replace('../frontend/views/login.html');</script>";
 
     } catch (Exception $e) {
         echo 'Exceção capturada: ',  $e->getMessage(), "\n";
