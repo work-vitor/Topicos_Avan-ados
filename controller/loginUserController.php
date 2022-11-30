@@ -16,7 +16,8 @@
         
         $db_email=$Fetch['email'];
         $db_password=$Fetch['password'];
-        
+        // var_dump($password);
+        // var_dump($db_password);
         if($db_password != $password){
             echo "<script> alert('Senha incorreta, por favor verifique');</script>";
             echo "<script> window.location.replace('../frontend/views/login.html');</script>";
