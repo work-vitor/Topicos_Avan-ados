@@ -11,7 +11,7 @@ abstract class Conexao {
 			$db   = 'controle_energia';
 			$user = 'root';
 			$pass = '';
-			$port = "3307";
+			$port = "";
 			$charset = 'utf8mb4';
 
 			$options = [

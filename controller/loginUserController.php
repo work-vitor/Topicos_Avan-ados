@@ -16,14 +16,19 @@
         
         $db_email=$Fetch['email'];
         $db_password=$Fetch['password'];
-        // var_dump($password);
-        // var_dump($db_password);
+        
         if($db_password != $password){
             echo "<script> alert('Senha incorreta, por favor verifique');</script>";
             echo "<script> window.location.replace('../frontend/views/login.html');</script>";
         } else {
-            echo "<script> alert('Login realizado com sucesso!');</script>";
-            echo "<script> window.location.replace('../frontend/views/dashboard.html');</script>";
+            if($Fetch['role'] == "admin"){
+                echo "<script> alert('Login realizado com sucesso!');</script>";
+                echo "<script> window.location.replace('../frontend/views/admin/dashboard.html');</script>";
+            }else{
+                echo "<script> alert('Login realizado com sucesso!');</script>";
+                echo "<script> window.location.replace('../frontend/views/user/dashboard.html');</script>";
+            }
+            
         }
     } catch (Exception $e) {
         echo 'Exceção capturada: ',  'Login incorreto, verifique as informações', "\n";
