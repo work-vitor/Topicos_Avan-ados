@@ -22,10 +22,13 @@
             echo "<script> alert('Senha incorreta, por favor verifique');</script>";
             echo "<script> window.location.replace('../frontend/views/login.html');</script>";
         } else {
+            session_start();
             if($Fetch['role'] == "admin"){
+                $_SESSION["type_user"] = "admin";
                 echo "<script> alert('Login realizado com sucesso!');</script>";
                 echo "<script> window.location.replace('../frontend/views/admin/dashboard.html');</script>";
             }else{
+                $_SESSION["type_user"] = "user";
                 echo "<script> alert('Login realizado com sucesso!');</script>";
                 echo "<script> window.location.replace('../frontend/views/user/dashboard.html');</script>";
             }
