@@ -8,4 +8,3 @@
     }
 ?>
 
-<h1>DASHBOARD USER</h1>
