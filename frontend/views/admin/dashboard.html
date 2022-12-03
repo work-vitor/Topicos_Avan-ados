@@ -30,14 +30,62 @@
             </div>
         </nav>
 
-          <div class="container">
-            <div class="form-group">
-               <h3 class="text-center">Seus dados</h3>
-                    <span> Saldo atual: </span> <br>
-                    <span> Seu consumo esse mês: </span>
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <b>Nome completo</b>
+              </div>
+              <div class="col">
+                Crédito restante:
+              </div>
+              <div class="col">
+                Consumo mensal:
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalCredito">Adicionar créditos</button>
+            </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <b>Nome completo</b>
                 </div>
-                <span> Última recarga do saldo: </span>
-        </div>
+                  <div class="col">
+                    Crédito restante:
+                </div>
+                  <div class="col">
+                    Consumo mensal:
+                </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalCredito">Adicionar créditos</button>
+                </div>
+            </div>
+          </div>
+          
+
+
+        <div class="modal fade" id="modalCredito" tabindex="-1" role="dialog" aria-labelledby="modalCredito" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalCredito">Créditos</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <span>Informe o valor a ser adicionado</span>
+                    <form action="">
+                        <input type="text" name="credit" id="creditInput" placeholder="R$ 0,00">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                  <button type="button" class="btn btn-success">Salvar mudanças</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
         
@@ -53,11 +101,11 @@
     }
 
     .container {
-        width: 20%;
+        width: 100%;
         margin: 0 auto;
         background: white;
         position: absolute;
-        top: 50%;
+        top: 30%;
         z-index: 2;
         color: black;
         content: '';
@@ -66,9 +114,9 @@
         transform: translate(-50%, -50%);
     }
 
-    .form-group {
+    .row {
         border-style: groove;
-        border-radius: 4px;
+        border-radius: 2px;
         padding: 20px;
 
     }
