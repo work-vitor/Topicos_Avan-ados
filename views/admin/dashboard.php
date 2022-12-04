@@ -59,7 +59,7 @@
                   Consumo mensal: <?php echo $Fetch['consume'];?>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalCredito">Adicionar créditos</button>
+                  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalCredito" id="btn-click" onClick="valor(this.value);" value="<?php echo $Fetch['user_id'];?>" >Adicionar créditos</button>
               </div>
               </div>
             </div>
@@ -79,7 +79,8 @@
                 <div class="modal-body">
                     <span>Informe o valor a ser adicionado</span>
                     <form action="">
-                        <input type="text" name="credit" id="creditInput" placeholder="R$ 0,00">
+                        <input type="hidden" name="envio_id" value="">
+                        <input type="text" name="credit" id="creditInput" placeholder="R$ 0,00" value="">
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -90,7 +91,11 @@
             </div>
           </div>
 
-
+      <script>
+        function valor(teste){
+          document.querySelector("[name='envio_id']").value = teste;
+        }
+      </script>
         
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
