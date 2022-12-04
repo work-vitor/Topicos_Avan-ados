@@ -37,14 +37,16 @@
                   <a class="nav-link" href="#">PÁGINA INICIAL<span class="sr-only">(current)</span></a>
                 </li>
               </ul>
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Olá, </a>
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Olá, Adm</a>
                 <div class="dropdown-menu" style="right: 0; left: auto;">
                   <a class="dropdown-item" href="#">Meu perfil</a>
                   <a class="dropdown-item" href="../../controller/destroy_session.php">Sair</a>
                 </div>    
             </div>
         </nav>
-
+        <div>
+        </div>
+        <br>
         <?php while($Fetch=$BFetch->fetch(PDO::FETCH_ASSOC)){ ?>
 
           <div class="container">
@@ -108,21 +110,6 @@
         color: white;
     }
 
-    .container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        margin: 0 auto;
-        background: white;
-        position: sticky;
-        top: 30%;
-        z-index: 2;
-        color: black;
-        content: '';
-        padding: 20px;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 
     .row {
         border-style: groove;
