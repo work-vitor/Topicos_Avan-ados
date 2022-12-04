@@ -1,3 +1,18 @@
+<?php
+    include("../../models/Crud.php");
+    session_start();
+    /*if(isset($_SESSION['type_user'])){
+        echo "<script> alert('Acesso negado!');</script>";
+        echo "<script> window.location.replace('../auth/login.php');</script>";
+    } elseif($_SESSION['type_user'] != "admin"){
+        echo "<script> alert('Acesso negado!');</script>";
+        echo "<script> window.location.replace('../user/dashboard.php');</script>";
+    }*/
+    $crud = new ClassCrud();
+    $BFetch = $crud->selectDB("u.*, ce.*", "users u", "INNER JOIN consume_energy ce on ce.user_id=u.id", array());
+
+    
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -25,44 +40,32 @@
               <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Olá, </a>
                 <div class="dropdown-menu" style="right: 0; left: auto;">
                   <a class="dropdown-item" href="#">Meu perfil</a>
-                  <a class="dropdown-item" href="#">Sair</a>
+                  <a class="dropdown-item" href="../../controller/destroy_session.php">Sair</a>
                 </div>    
             </div>
         </nav>
 
-        <div class="container">
-            <div class="row">
-              <div class="col">
-                <b>Nome completo</b>
+        <?php while($Fetch=$BFetch->fetch(PDO::FETCH_ASSOC)){ ?>
+
+          <div class="container">
+              <div class="row">
+                <div class="col">
+                  <b>Nome completo: <?php echo $Fetch['name'];?></b>
+                </div>
+                <div class="col">
+                  Crédito restante: <?php echo $Fetch['credits'];?>
+                </div>
+                <div class="col">
+                  Consumo mensal: <?php echo $Fetch['consume'];?>
+                </div>
+                <div class="col">
+                  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalCredito">Adicionar créditos</button>
               </div>
-              <div class="col">
-                Crédito restante:
               </div>
-              <div class="col">
-                Consumo mensal:
-              </div>
-              <div class="col">
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalCredito">Adicionar créditos</button>
-            </div>
             </div>
             <br>
-            <div class="row">
-                <div class="col">
-                    <b>Nome completo</b>
-                </div>
-                  <div class="col">
-                    Crédito restante:
-                </div>
-                  <div class="col">
-                    Consumo mensal:
-                </div>
-                  <div class="col">
-                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalCredito">Adicionar créditos</button>
-                </div>
-            </div>
-          </div>
           
-
+          <?php } ?>
 
         <div class="modal fade" id="modalCredito" tabindex="-1" role="dialog" aria-labelledby="modalCredito" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -101,10 +104,12 @@
     }
 
     .container {
+        display: flex;
+        justify-content: center;
         width: 100%;
         margin: 0 auto;
         background: white;
-        position: absolute;
+        position: sticky;
         top: 30%;
         z-index: 2;
         color: black;

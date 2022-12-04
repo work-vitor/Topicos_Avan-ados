@@ -17,7 +17,7 @@
             </div>
             <br>
             <h3 class="text-center">Faça o login para utilizar o sistema</h3>
-            <form action="../../../controller/loginUserController.php" method="POST">
+            <form action="../../controller/loginUserController.php" method="POST">
                 <div class="form-group">
                     <label for="email"> <span class="glyphicon glyphicon-envelope"></span> Email:</label>
                     <input type="email" class="form-control" id="email" placeholder="Login" name="email">
@@ -26,7 +26,7 @@
                     <label for="pwd"> <span class="glyphicon glyphicon-lock"></span> Senha:</label>
                     <input type="password" class="form-control" id="pwd" placeholder="Senha" name="password">
                 </div>
-                <h5> Não tem uma conta? <a href="../auth/register_user.html" class="link-primary" >Criar conta</a> </h5>
+                <h5> Não tem uma conta? <a href="register_user.php" class="link-primary" >Criar conta</a> </h5>
                 <button type="submit" class="btn btn-default">Entrar</button>
             </form>
         </div>

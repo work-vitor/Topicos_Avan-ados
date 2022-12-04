@@ -1,3 +1,15 @@
+<?php
+    include("../../models/Crud.php");
+    session_start();
+    if(!isset($_SESSION['type_user'])){
+        echo "<script> alert('Acesso negado!');</script>";
+        echo "<script> window.location.replace('../auth/login.php');</script>";
+    } 
+    
+    $crud = new ClassCrud();
+    $BFetch = $crud->selectDB("u.*, ce.*", "users u", "INNER JOIN consume_energy ce on ce.user_id=u.id where u.id=?", array($_SESSION['id_user']));
+    $Fetch=$BFetch->fetch(PDO::FETCH_ASSOC);
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -22,21 +34,25 @@
                   <a class="nav-link" href="#">PÁGINA INICIAL<span class="sr-only">(current)</span></a>
                 </li>
               </ul>
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Olá, </a>
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Olá, <?php echo $Fetch['name'];?> </a>
                 <div class="dropdown-menu" style="right: 0; left: auto;">
                   <a class="dropdown-item" href="#">Meu perfil</a>
-                  <a class="dropdown-item" href="#">Sair</a>
+                  <a class="dropdown-item" href="../../controller/destroy_session.php">Sair</a>
                 </div>    
             </div>
         </nav>
 
+        <?php
+          
+        ?>
           <div class="container">
             <div class="form-group">
                <h3 class="text-center">Seus dados</h3>
-                    <span> Saldo atual: </span> <br>
-                    <span> Seu consumo esse mês: </span>
+                    <span>Nome: <?php echo $Fetch['name'];?></span><br>
+                    <span>Saldo atual: <?php echo $Fetch['credits'];?> </span> <br>
+                    <span>Seu consumo esse mês: <?php echo $Fetch['consume'];?> </span>
                 </div>
-                <span> Última recarga do saldo: </span>
+                <span>Última recarga do saldo: </span>
         </div>
 
 
