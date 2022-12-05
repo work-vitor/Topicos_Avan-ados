@@ -80,14 +80,15 @@
                 </div>
                 <div class="modal-body">
                     <span>Informe o valor a ser adicionado</span>
-                    <form action="">
+                    <form action="../../controller/addCreditsController.php" method="POST">
                         <input type="hidden" name="envio_id" value="">
                         <input type="text" name="credit" id="creditInput" placeholder="R$ 0,00" value="">
-                    </form>
+                    
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                  <button type="button" class="btn btn-success">Salvar mudanças</button>
+                  <button type="number" step="0.01" class="btn btn-success">Salvar mudanças</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -96,6 +97,26 @@
       <script>
         function valor(teste){
           document.querySelector("[name='envio_id']").value = teste;
+        }
+
+        const input = document.getElementById("creditInput");
+
+        input.addEventListener("keyup", formatarMoeda); 
+
+        function formatarMoeda(e) {
+
+        var v = e.target.value.replace(/\D/g,"");
+
+        v = (v/100).toFixed(2) + "";
+
+        v = v.replace(".", ",");
+
+        v = v.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
+
+        v = v.replace(/(\d)(\d{3}),/g, "$1.$2,");
+
+        e.target.value = v;
+
         }
       </script>
         
