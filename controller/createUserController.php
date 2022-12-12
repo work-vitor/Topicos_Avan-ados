@@ -4,6 +4,8 @@
     include '../models/Crud.php';
 
     $crud = new ClassCrud;
+    $date = date('Y/m/d');
+    //$date = date('Y/m/d H:i');
 
     try {
         $crud->insertDB(
@@ -21,12 +23,13 @@
         $Fetch = $BFetch->fetch(PDO::FETCH_ASSOC);
         $crud->insertDB(
             "consume_energy",
-            "?,?,?,?",
+            "?,?,?,?,?",
             array(
                 null,
                 $Fetch['id'],
                 0,
-                0
+                0,
+                null
             )
         );
 
