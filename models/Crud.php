@@ -51,6 +51,8 @@ class ClassCrud extends Conexao{
 		return $this->Crud;
 	}
 
+	
+
 
 	//Deletar dados no DB
 
@@ -66,5 +68,3 @@ class ClassCrud extends Conexao{
 	}
 
 }
-
-?>
