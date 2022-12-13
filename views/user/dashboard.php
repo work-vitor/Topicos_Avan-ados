@@ -103,7 +103,7 @@ if (isset($_POST['dateIn'])) {
         </div>
         <div class="modal-body">
           <span>Informe o periódo a ser verificado</span>
-          <form action="" method="POST">
+          <form action="relatorio.php" method="POST">
             <label>Inicio</label>
             <input type="date" name="dateIn" id="dateIn" value="">
             <label>Fim:</label>
