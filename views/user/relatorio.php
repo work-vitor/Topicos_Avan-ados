@@ -50,7 +50,7 @@ if (isset($_POST['dateIn'])) {
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">PÁGINA INICIAL<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/views/user/dashboard.php">PÁGINA INICIAL<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Olá, <?php echo $Fetch['name']; ?> </a>
@@ -60,61 +60,49 @@ if (isset($_POST['dateIn'])) {
         </div>
     </nav>
 
-
-
-
     <div class="container">
+        <h3 class="text-center">Relatório Completo</h3><br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">CONSUMO</th>
+                    <th scope="col" class="text-center">DATA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <?php
+                    $MaiorC = 0;
+                    $DataMC = null;
+                    $BFetch3 = $crud->selectDB("*", "consume_energy", "where dateTime >= ? and dateTime <= ? and user_id=?", array($dateI, $dateF, $Fetch['user_id']));
+                    while ($Fetch3 = $BFetch3->fetch(PDO::FETCH_ASSOC)) {
 
-        <h3>Relatório completo</h3>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Consumo</th>
-            <th scope="col">Data</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <?php
-            $MaiorC = 0;
-            $DataMC = null;
-            $BFetch3 = $crud->selectDB("*", "consume_energy", "where dateTime >= ? and dateTime <= ? and user_id=?", array($dateI, $dateF, $Fetch['user_id']));
-            while ($Fetch3 = $BFetch3->fetch(PDO::FETCH_ASSOC)) {
-
-                if ($Fetch3['consume']  > $MaiorC) {
-                    $MaiorC = $Fetch3['consume'];
-                    $DataMC = $Fetch3['dateTime'];
-                    $DataCV =  date('d-m-Y', strtotime($DataMC));
-                }
-                $soma += $Fetch3['consume'];
-            ?>
-                <td><?php echo $Fetch3['consume']; ?></td>
-                <td><?php
-                    $teste =  date('d-m-Y', strtotime($Fetch3['dateTime']));
-                    echo $teste; ?></td>
-        </tr>
-    <?php } ?>
-    </tbody>
-</table>
-
+                        if ($Fetch3['consume']  > $MaiorC) {
+                            $MaiorC = $Fetch3['consume'];
+                            $DataMC = $Fetch3['dateTime'];
+                            $DataCV =  date('d/m/Y', strtotime($DataMC));
+                        }
+                        $soma += $Fetch3['consume'];
+                    ?>
+                        <td class="text-center"><?php echo $Fetch3['consume']; ?></td>
+                        <td class="text-center"><?php
+                            $teste =  date('d/m/Y', strtotime($Fetch3['dateTime']));
+                            echo $teste; ?></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
     </div>
 
 
-    <div class="form-group dados">
-            <h5 class="text-center">Resumo</h5>
-            <span>Maior consumo no período: <?php echo $MaiorC; ?></span><br>
-            <span>Data do consumo: <?php echo $DataCV; ?> </span> <br>
-
-            <div class="col">
-
-            </div>
-        </div>
-
-    <div class="modal fade" id="modalResultado" tabindex="-1" role="dialog" aria-labelledby="modalResultado" aria-hidden="true">
-
+    <div class="form-group resumo">
+        <h5 class="text-center">Resumo - Relatório de Consumo</h5>
+            <div class="text-center">Maior consumo no período: <?php echo $MaiorC; ?></div>
+            <div class="text-center">Data do consumo: <?php echo $DataCV; ?> </div> 
+            <div class="col"></div>
     </div>
+
+    <div class="modal fade" id="modalResultado" tabindex="-1" role="dialog" aria-labelledby="modalResultado" aria-hidden="true"></div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -123,12 +111,25 @@ if (isset($_POST['dateIn'])) {
 
 
 </body>
-
 </html>
+
+
 
 <style>
     a {
         color: white;
+    }
+
+    table.table-bordered{
+    border:1px slategray;
+    margin-top:20px;
+  }
+    table.table-bordered > thead > tr > th{
+        border:1px solid  slategray;
+    }
+
+    table.table-bordered > tbody > tr > td{
+        border:1px solid  slategray;
     }
 
     .container {
@@ -136,7 +137,7 @@ if (isset($_POST['dateIn'])) {
         margin: 0 auto;
         background: white;
         position: absolute;
-        top: 30%;
+        top: 35%;
         z-index: 2;
         color: black;
         content: '';

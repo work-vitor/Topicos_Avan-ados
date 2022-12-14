@@ -95,18 +95,17 @@ if (isset($_POST['dateIn'])) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalCredito">Relátorio</h5>
+          <h5 class="modal-title" id="modalCredito">Relatório</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <form action="../../views/user/relatorio.php" method="POST">
         <div class="modal-body">
-          <span>Informe o período a ser verificado</span>
-          <form action="relatorio.php" method="POST">
-            <label>Inicio</label>
-            <input type="date" name="dateIn" id="dateIn" value="">
-            <label>Fim:</label>
+          <span>Informe o período a ser verificado</span><br><br>
+            <label>Início</label>
+            <input type="date" name="dateIn" id="dateIn" value=""><br>
+            <label>Fim:  </label>
             <input type="date" name="dateF" id="dateF" value="">
 
         </div>
