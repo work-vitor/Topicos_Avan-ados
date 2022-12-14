@@ -74,7 +74,7 @@ if (isset($_POST['dateIn'])) {
                     <?php
                     $MaiorC = 0;
                     $DataMC = null;
-                    $BFetch3 = $crud->selectDB("*", "consume_energy", "where dateTime >= ? and dateTime <= ? and user_id=?", array($dateI, $dateF, $Fetch['user_id']));
+                    $BFetch3 = $crud->selectDB("*", "consume_energy", "where dateTime >= ? and dateTime <= ? and user_id=? ORDER BY dateTime", array($dateI, $dateF, $Fetch['user_id']));
                     while ($Fetch3 = $BFetch3->fetch(PDO::FETCH_ASSOC)) {
 
                         if ($Fetch3['consume']  > $MaiorC) {
@@ -97,8 +97,9 @@ if (isset($_POST['dateIn'])) {
 
     <div class="form-group resumo">
         <h5 class="text-center">Resumo - Relatório de Consumo</h5>
-            <div class="text-center">Maior consumo no período: <?php echo $MaiorC; ?></div>
+            <div class="text-center">Maior consumo no período: <?php echo $MaiorC; ?> KHM</div>
             <div class="text-center">Data do consumo: <?php echo $DataCV; ?> </div> 
+            <div class="text-center">Total consumido no periodo: <?php echo $soma; ?> KHM</div> 
             <div class="col"></div>
     </div>
 
@@ -149,7 +150,7 @@ if (isset($_POST['dateIn'])) {
     .form-group {
         border-style: groove;
         border-radius: 4px;
-        padding: 20px;
+        padding: 10px;
 
     }
 </style>
