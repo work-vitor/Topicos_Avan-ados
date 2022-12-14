@@ -55,64 +55,62 @@ if (isset($_POST['dateIn'])) {
             </ul>
             <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Olá, <?php echo $Fetch['name']; ?> </a>
             <div class="dropdown-menu" style="right: 0; left: auto;">
-                <a class="dropdown-item" href="#">Meu perfil</a>
                 <a class="dropdown-item" href="../../controller/destroy_session.php">Sair</a>
             </div>
         </div>
     </nav>
 
-    <h1>Relátorio</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Consumo</th>
-                <th scope="col">Data</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <?php
-                $MaiorC = 0;
-                $DataMC = null;
-                $BFetch3 = $crud->selectDB("*", "consume_energy", "where dateTime >= ? and dateTime <= ? and user_id=?", array($dateI, $dateF, $Fetch['user_id']));
-                while ($Fetch3 = $BFetch3->fetch(PDO::FETCH_ASSOC)) {
-
-                    if ($Fetch3['consume']  > $MaiorC) {
-                        $MaiorC = $Fetch3['consume'];
-                        $DataMC = $Fetch3['dateTime'];
-                        $DataCV =  date('d-m-Y', strtotime($DataMC));
-                    }
-                    $soma += $Fetch3['consume'];
-                ?>
-                    <td><?php echo $Fetch3['consume']; ?></td>
-                    <td><?php
-                        $teste =  date('d-m-Y', strtotime($Fetch3['dateTime']));
-                        echo $teste; ?></td>
-            </tr>
-        <?php } ?>
-        </tbody>
-    </table>
 
 
     <div class="container">
-        <div class="form-group">
-            <h3 class="text-center">Seus dados</h3>
-            <span>Maior consumo no periódo: <?php echo $MaiorC; ?></span><br>
+
+        <h3>Relatório completo</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Consumo</th>
+            <th scope="col">Data</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <?php
+            $MaiorC = 0;
+            $DataMC = null;
+            $BFetch3 = $crud->selectDB("*", "consume_energy", "where dateTime >= ? and dateTime <= ? and user_id=?", array($dateI, $dateF, $Fetch['user_id']));
+            while ($Fetch3 = $BFetch3->fetch(PDO::FETCH_ASSOC)) {
+
+                if ($Fetch3['consume']  > $MaiorC) {
+                    $MaiorC = $Fetch3['consume'];
+                    $DataMC = $Fetch3['dateTime'];
+                    $DataCV =  date('d-m-Y', strtotime($DataMC));
+                }
+                $soma += $Fetch3['consume'];
+            ?>
+                <td><?php echo $Fetch3['consume']; ?></td>
+                <td><?php
+                    $teste =  date('d-m-Y', strtotime($Fetch3['dateTime']));
+                    echo $teste; ?></td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
+
+    </div>
+
+
+    <div class="form-group dados">
+            <h5 class="text-center">Resumo</h5>
+            <span>Maior consumo no período: <?php echo $MaiorC; ?></span><br>
             <span>Data do consumo: <?php echo $DataCV; ?> </span> <br>
 
             <div class="col">
 
             </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-dark " data-toggle="modal" data-target="#modalCredito" id="btn-click">Relatório</button>
-        </div>
-    </div>
-
-
-
 
     <div class="modal fade" id="modalResultado" tabindex="-1" role="dialog" aria-labelledby="modalResultado" aria-hidden="true">
 
@@ -134,11 +132,11 @@ if (isset($_POST['dateIn'])) {
     }
 
     .container {
-        width: 20%;
+        width: 100%;
         margin: 0 auto;
         background: white;
         position: absolute;
-        top: 60%;
+        top: 30%;
         z-index: 2;
         color: black;
         content: '';

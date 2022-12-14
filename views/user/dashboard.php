@@ -59,7 +59,6 @@ if (isset($_POST['dateIn'])) {
       </ul>
       <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Olá, <?php echo $Fetch['name']; ?> </a>
       <div class="dropdown-menu" style="right: 0; left: auto;">
-        <a class="dropdown-item" href="#">Meu perfil</a>
         <a class="dropdown-item" href="../../controller/destroy_session.php">Sair</a>
       </div>
     </div>
@@ -101,8 +100,9 @@ if (isset($_POST['dateIn'])) {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <form action="../../views/user/relatorio.php" method="POST">
         <div class="modal-body">
-          <span>Informe o periódo a ser verificado</span>
+          <span>Informe o período a ser verificado</span>
           <form action="relatorio.php" method="POST">
             <label>Inicio</label>
             <input type="date" name="dateIn" id="dateIn" value="">
